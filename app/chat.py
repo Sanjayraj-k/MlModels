@@ -2,7 +2,7 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 import joblib
 import pickle
-import matplotlib.pyplot as plt
+
 sentiment_mpdel=pickle.load(open('app/sentiment_model.pkl','rb'))
 vectorizer = joblib.load("/workspaces/MlModels/app/tfidf_vectorizer.pkl")
 with st.sidebar:
@@ -23,36 +23,8 @@ if selected=="Sentiment Analysis":
         prediction = loaded_model.predict(vectorizer.transform([text]))
 
         st.success((f"Prediction: {prediction[0]}"))
-        if prediction[0]=='positive':
-            pos=100
-            neg=0
-            neu=0
-            sent={'positive':pos,'negative':neg,'neutral':neu}
-            plt.bar(sent.keys(),sent.values())
-            plt.xlabel('Sentiments')    
-            plt.ylabel('Count') 
-            plt.title('Sentiment Analysis')
-            st.pyplot(plt)
-        elif prediction[0]=="negative":
-            pos=0
-            neg=100
-            neu=0
-            sent={'positive':pos,'negative':neg,'neutral':neu}
-            plt.bar(sent.keys(),sent.values())
-            plt.xlabel('Sentiments')    
-            plt.ylabel('Count') 
-            plt.title('Sentiment Analysis')
-            st.pyplot(plt)
-        else:
-            pos=0
-            neg=0
-            neu=100
-            sent={'positive':pos,'negative':neg,'neutral':neu}
-            plt.bar(sent.keys(),sent.values())
-            plt.xlabel('Sentiments')    
-            plt.ylabel('Count') 
-            plt.title('Sentiment Analysis')
-            st.pyplot(plt)
+        
+        
 else:
     st.title("SleepTime Analysis")
     col1,col2=st.columns(2)
