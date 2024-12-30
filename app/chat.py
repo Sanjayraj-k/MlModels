@@ -2,8 +2,8 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 import joblib
 import matplotlib.pyplot as plt
-sentiment_mpdel=joblib.load(open('sentiment_model.pkl','rb'))
-vectorizer = joblib.load("tfidf_vectorizer.pkl")
+sentiment_mpdel=joblib.load(open('app/sentiment_model.pkl','rb'))
+vectorizer = joblib.load("app/tfidf_vectorizer.pkl")
 with st.sidebar:
     st.title("Machine Learning Models")
     selected = option_menu(
@@ -15,8 +15,8 @@ if selected=="Sentiment Analysis":
     st.title("Sentiment Analysis")
     text=st.text_area("Enter the Sentence to predict the sentiment")
     if st.button("Predict"):
-        loaded_model = joblib.load("/workspaces/MlModels/app/sentiment_model.pkl")
-        vectorizer = joblib.load("/workspaces/MlModels/app/tfidf_vectorizer.pkl")
+        loaded_model = joblib.load("app/sentiment_model.pkl")
+        vectorizer = joblib.load("app/tfidf_vectorizer.pkl")
     #processed_input = clean_text(text)
     #vectorized_input = vectorizer.transform([processed_input])
         prediction = loaded_model.predict(vectorizer.transform([text]))
