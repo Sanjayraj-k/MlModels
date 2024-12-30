@@ -1,9 +1,8 @@
 from streamlit_option_menu import option_menu
 import streamlit as st
-import pickle
 import joblib
 import matplotlib.pyplot as plt
-sentiment_mpdel=pickle.load(open('sentiment_model.pkl','rb'))
+sentiment_mpdel=joblib.load(open('sentiment_model.pkl','rb'))
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
 with st.sidebar:
     st.title("Machine Learning Models")
