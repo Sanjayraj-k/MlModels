@@ -2,13 +2,8 @@ from streamlit_option_menu import option_menu
 import streamlit as st
 import joblib
 import matplotlib.pyplot as plt
-<<<<<<< HEAD
 sentiment_mpdel=joblib.load(open('sentiment_model.pkl','rb'))
 vectorizer = joblib.load("tfidf_vectorizer.pkl")
-=======
-sentiment_mpdel=pickle.load(open('app/sentiment_model.pkl','rb'))
-vectorizer = joblib.load("/workspaces/MlModels/app/tfidf_vectorizer.pkl")
->>>>>>> 494f54e906cd3170165f0d9d3edadacc65c2c3d2
 with st.sidebar:
     st.title("Machine Learning Models")
     selected = option_menu(
