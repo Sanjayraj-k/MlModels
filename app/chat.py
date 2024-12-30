@@ -1,9 +1,10 @@
 from streamlit_option_menu import option_menu
 import streamlit as st
 import joblib
+import pickle
 import matplotlib.pyplot as plt
-sentiment_mpdel=joblib.load(open('sentiment_model.pkl','rb'))
-vectorizer = joblib.load("tfidf_vectorizer.pkl")
+sentiment_mpdel=pickle.load(open('app/sentiment_model.pkl','rb'))
+vectorizer = joblib.load("/workspaces/MlModels/app/tfidf_vectorizer.pkl")
 with st.sidebar:
     st.title("Machine Learning Models")
     selected = option_menu(
@@ -15,8 +16,8 @@ if selected=="Sentiment Analysis":
     st.title("Sentiment Analysis")
     text=st.text_area("Enter the Sentence to predict the sentiment")
     if st.button("Predict"):
-        loaded_model = joblib.load("sentiment_model.pkl")
-        vectorizer = joblib.load("tfidf_vectorizer.pkl")
+        loaded_model = joblib.load("/workspaces/MlModels/app/sentiment_model.pkl")
+        vectorizer = joblib.load("/workspaces/MlModels/app/tfidf_vectorizer.pkl")
     #processed_input = clean_text(text)
     #vectorized_input = vectorizer.transform([processed_input])
         prediction = loaded_model.predict(vectorizer.transform([text]))
@@ -71,7 +72,7 @@ else:
         RelaxationTime=st.number_input("Enter your Relaxation Time",min_value=0.0,step=0.1,max_value=10.0)
     predict=st.button("Predict Sleep Time")
     if predict:
-        loaded_model = joblib.load("sleep.pkl")
+        loaded_model = joblib.load("app/sleep.pkl")
         prediction = loaded_model.predict([[work,study,travel,workhours,CaffeineIntake,RelaxationTime]])
         st.success(f"Predicted Sleep Time is {prediction[0]} hours")
         sleep={'Sleep Time':prediction[0]}
